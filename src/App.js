@@ -8,6 +8,7 @@ import AuthProvider from "./Hooks/AuthProvider";
 import Dashbord from "./Pages/Dashbord/Dashbord/Dashbord";
 import HomePage from './Pages/Home/Home/HomePage';
 import LoginPage from "./Pages/Login/LoginPage/LoginPage";
+import SinginPage from "./Pages/Login/SinginPage/SinginPage";
 import Products from "./Pages/Products/Products/Products";
 
 function App() {
@@ -29,6 +30,9 @@ function App() {
           </Route>
           <Route path="/Login">
             <LoginPage />
+          </Route>
+          <Route path="/singup">
+            <SinginPage />
           </Route>
         </Switch>
     </Router>
