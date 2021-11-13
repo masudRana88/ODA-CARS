@@ -1,0 +1,8 @@
+.home-banner {
+    height: 100vh;
+}
+.banner-info{
+    transform: translate(10%, 90%);
+    color: white;
+
+}

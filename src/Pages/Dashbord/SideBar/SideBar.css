@@ -1,0 +1,11 @@
+.dashbord-side{
+    min-height: 100vh;
+    margin-top: -10px;
+}
+@media screen and (max-width: 680px) {
+  .dashbord-side{
+    min-height: 100%;
+    margin-top: -10px;
+    padding-bottom: 10px ;
+}
+}
