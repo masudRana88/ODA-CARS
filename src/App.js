@@ -10,6 +10,7 @@ import HomePage from './Pages/Home/Home/HomePage';
 import LoginPage from "./Pages/Login/LoginPage/LoginPage";
 import SinginPage from "./Pages/Login/SinginPage/SinginPage";
 import Products from "./Pages/Products/Products/Products";
+import Purchase from "./Pages/Purchase/Purchase";
 
 function App() {
   return (
@@ -28,11 +29,14 @@ function App() {
           <Route path="/dashbord">
             <Dashbord />
           </Route>
-          <Route path="/Login">
+          <Route exact path="/Login">
             <LoginPage />
           </Route>
-          <Route path="/singup">
+          <Route exact path="/singup">
             <SinginPage />
+          </Route>
+          <Route path="/purchase/:idName">
+            <Purchase/>
           </Route>
         </Switch>
     </Router>

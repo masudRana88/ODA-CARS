@@ -27,7 +27,7 @@ const LoginPage = () => {
                 <form id="form-make-admin">
                     <div class="mb-3">
                         <label class="form-label">Email Address</label>
-                            <input type="email" class="form-control" placeholder="Enter your email" name="email" onBlur={hendleBlur }/>
+                        <input type="email" class="form-control" placeholder="Enter your email" name="email" onBlur={hendleBlur }/>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">PassWord</label>

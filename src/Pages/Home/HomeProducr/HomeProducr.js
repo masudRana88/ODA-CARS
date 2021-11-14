@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const HomeProducr = () => {
     const [cars , setCars] = useState([])
@@ -21,7 +22,7 @@ const HomeProducr = () => {
                 <div class="card-body">
                        <h5 class="card-title">{ car.model}</h5>
                        <p class="card-text">{car.discription}</p>
-                       <button className="btn bg-info">Buy Now</button>  
+                       <Link to={`/purchase/${car._id}`}><button className="btn bg-info">Buy Now</button></Link>  
                 </div> 
                 </div>
             </div>        
