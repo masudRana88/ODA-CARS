@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import useAuth from '../../../Hooks/useAuth';
 
 const NavBar = () => {
+  const {user,logOut} = useAuth()
     return (
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
@@ -26,12 +28,21 @@ const NavBar = () => {
       <div className="d-flex">
          <div>
              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                <li className="nav-item">
-                    <Link class="nav-link" aria-current="page" to="/login">Login</Link>     
+                <li className="nav-item me-2">
+                    <p>{user.email}</p>  
                 </li>
-                <li className="nav-item">
-                    <Link class="nav-link" aria-current="page" to="/singup">Sing Up</Link>     
-                </li>
+                {
+                    user.email ? <div className="nav-item">
+                      <button className="btn bg-danger nav-link text-light" onClick={logOut}>Log out</button>
+                    </div> : <div className="d-flex">
+                        <li className="nav-item">
+                            <Link class="nav-link" aria-current="page" to="/login">Login</Link>     
+                        </li>
+                        <li className="nav-item">
+                            <Link class="nav-link" aria-current="page" to="/singup">Sing Up</Link>     
+                        </li> 
+                  </div>   
+                }
              </ul>    
         </div>
     </div>

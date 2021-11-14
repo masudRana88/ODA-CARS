@@ -1,4 +1,4 @@
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged} from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged,signOut } from "firebase/auth";
 import { useEffect, useState } from "react";
 import initializeAuthentication from "../Firebase/firebase.init";
 
@@ -8,12 +8,17 @@ const useFirebase = () => {
     const [user, setUser] = useState({})
     const auth = getAuth();
     // Email SingIn
-    const singInWithEmail = (data) => {
+    const singInWithEmail = (data,hisotory) => {
         createUserWithEmailAndPassword(auth, data.email, data.password)
         .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
             setUser(user)
+            console.log(user)
+            if (user.email) {
+            alert("Sing is Susseccfull !!!")
+            hisotory.push('/')
+        }
             // ...
         })
         .catch((error) => {
@@ -22,8 +27,9 @@ const useFirebase = () => {
             // ..
          });
     }
+    // email Login
     const logInWithEmail = (data) => {
-        signInWithEmailAndPassword(auth, data.email, data.password)
+        signInWithEmailAndPassword(auth, data.email, data.pass)
         .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
@@ -35,6 +41,14 @@ const useFirebase = () => {
         });
     }
 
+    // logOut 
+    const logOut = () => {
+        signOut(auth).then(() => {
+        // Sign-out successful.
+        }).catch((error) => {
+        // An error happened.
+        });
+        }
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, user => {
             if (user) {
@@ -47,6 +61,6 @@ const useFirebase = () => {
         return () => unsubscribe;
     },[])
 
-    return {user,logInWithEmail,singInWithEmail}
+    return {user,logInWithEmail,singInWithEmail,logOut}
 }
 export default useFirebase;

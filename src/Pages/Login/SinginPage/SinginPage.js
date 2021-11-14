@@ -1,21 +1,23 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink,useHistory,useLocation } from 'react-router-dom';
 import useAuth from '../../../Hooks/useAuth';
 import Footer from '../../Shared/Footer/Footer';
 import NavBar from '../../Shared/NavBar/NavBar';
 
 const SinginPage = () => {
     const [singUpdata, setSingUpdata] = useState({role: 'user'});
-    const {singInWithEmail} = useAuth()
-        const hendleBlur = (e) => {
+    const { singInWithEmail, user } = useAuth()
+    const hisotory = useHistory()
+    const location = useLocation()
+    const hendleBlur = (e) => {
         const field = e.target.name;
         const value = e.target.value;
         const newData = { ...singUpdata };
         newData[field] = value;
         setSingUpdata(newData)
     }
-    const hendleSingup = (data) => {
-        singInWithEmail(data)
+    const hendleSingup = (data, hisotory) => {
+        singInWithEmail(data,hisotory )
     }
     console.log(singUpdata)
     return (
@@ -39,7 +41,7 @@ const SinginPage = () => {
                     </div>
                 </form>
                 <NavLink to="login" className="nav-link"><p>Allready have an Account</p> </NavLink>   
-                <button className="btn bg-info" onClick={()=>hendleSingup(singUpdata)}>Login</button>    
+                <button className="btn bg-info" onClick={()=>hendleSingup(singUpdata,hisotory)}>Login</button>    
                 </div>
             </div>
             <Footer/>
