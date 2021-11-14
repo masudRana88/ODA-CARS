@@ -3,6 +3,7 @@ import { Route, Switch, useRouteMatch } from 'react-router';
 import Footer from '../../Shared/Footer/Footer';
 import NavBar from '../../Shared/NavBar/NavBar';
 import MakeAdmin from '../MakeAdmin/MakeAdmin';
+import ManageCar from '../ManageCar/ManageCar';
 import SideBar from '../SideBar/SideBar';
 import UplodeCar from '../Uplode/UplodeCar';
 import './Dashbord.css'
@@ -29,6 +30,9 @@ const Dashbord = () => {
                         </Route>
                         <Route path={`${path}/makeAdmin`}>
                            <MakeAdmin/>        
+                        </Route>
+                        <Route path={`${path}/managecar`}>
+                           <ManageCar/>        
                         </Route>
                     </Switch>
                     </div>

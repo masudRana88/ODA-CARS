@@ -1,3 +1,4 @@
+import axios from "axios";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged,signOut } from "firebase/auth";
 import { useEffect, useState } from "react";
 import initializeAuthentication from "../Firebase/firebase.init";
@@ -13,8 +14,7 @@ const useFirebase = () => {
         .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
-            setUser(user)
-            console.log(user)
+            upToDB(data)
             if (user.email) {
             alert("Sing is Susseccfull !!!")
             hisotory.push('/')
@@ -24,6 +24,10 @@ const useFirebase = () => {
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
+            console.log(errorCode)
+            if (errorCode === "auth/email-already-in-use") {
+                alert("This email Already used for Sing Up")
+            }
             // ..
          });
     }
@@ -34,13 +38,33 @@ const useFirebase = () => {
             // Signed in 
             const user = userCredential.user;
             setUser(user)
+            getToDB(user)
         })
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
         });
     }
-
+    // uplode user to DB
+    const upToDB = (data) => {
+        axios.post("http://localhost:5000/user", data)
+            .then(function (response) {
+                if (response.status === 200) {
+                    console.log(response)
+                    setUser(data)
+            }
+        })
+    }
+    // get user form DB
+    const getToDB = (user) => {
+        const userEmail = user.email
+        axios.get(`http://localhost:5000/user/${userEmail}`)
+            .then(function (response) {
+                if (response.status === 200) {
+                setUser(response.data)
+            }
+        })
+     }
     // logOut 
     const logOut = () => {
         signOut(auth).then(() => {
@@ -53,6 +77,7 @@ const useFirebase = () => {
         const unsubscribe = onAuthStateChanged(auth, user => {
             if (user) {
                 setUser(user)
+                getToDB(user)
             }
             else {
                 setUser({})

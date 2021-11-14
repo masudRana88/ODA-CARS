@@ -10,7 +10,7 @@ const SideBar = (props) => {
                 <Link to={`${props.url}/uplode`} className="list-group-item list-group-item-action "> uplode Car</Link>
             </div>
             <div class="list-group mb-1">
-                <Link to={`${props.url}/manageorder`} className="list-group-item list-group-item-action ">Manage Car</Link>
+                <Link to={`${props.url}/managecar`} className="list-group-item list-group-item-action ">Manage Car</Link>
             </div>
             <div class="list-group mb-1">
                 <Link to={`${props.url}/makeadmin`} className="list-group-item list-group-item-action ">Make Admin</Link>

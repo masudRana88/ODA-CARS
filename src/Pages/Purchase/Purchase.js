@@ -11,8 +11,10 @@ const Purchase = () => {
     const [car, setCar] = useState({});
     const { user } = useAuth()
     const { register, handleSubmit, reset } = useForm();
+
     const onSubmit = data => {
         data.purchaseItem = idName;
+        data.status = "pending"
         console.log(data)
         axios.post("http://localhost:5000/order", data)
             .then(function (res) {

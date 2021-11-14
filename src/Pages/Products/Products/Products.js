@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Footer from '../../Shared/Footer/Footer';
 import NavBar from '../../Shared/NavBar/NavBar';
 
@@ -24,7 +25,7 @@ const Products = () => {
                 <div class="card-body">
                        <h5 class="card-title">{ car.model}</h5>
                        <p class="card-text">{car.discription}</p>
-                       <button className="btn bg-info">Buy Now</button>  
+                       <Link to={`/purchase/${car._id}`}><button className="btn bg-info">Buy Now</button></Link>  
                 </div> 
                 </div>
             </div>        

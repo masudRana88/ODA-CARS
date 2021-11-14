@@ -19,7 +19,6 @@ const SinginPage = () => {
     const hendleSingup = (data, hisotory) => {
         singInWithEmail(data,hisotory )
     }
-    console.log(singUpdata)
     return (
         <div>
         <NavBar />

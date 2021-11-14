@@ -13,11 +13,10 @@ const UplodeCar = () => {
     const hendleUplode = () => {
         axios.post('http://localhost:5000/uplodcar', car)
             .then(function (response) {
-                if (response.status == 200) {
+                if (response.status === 200) {
                     alert("Uplode successfull")
                     rsetInput()
             }
-            console.log(response);
         })
         .catch(function (error) {
             console.log(error);
