@@ -6,7 +6,7 @@ import NavBar from '../../Shared/NavBar/NavBar';
 const Products = () => {
     const [cars , setCars] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/allcar')
+        fetch('https://fierce-dawn-14977.herokuapp.com/allcar')
             .then(rsc => rsc.json())
         .then(data => setCars(data))
     },[])

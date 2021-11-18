@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { useEffect } from 'react/cjs/react.development';
+import { useEffect } from 'react';
 import useAuth from '../../../Hooks/useAuth';
 
 const MyOrder = () => {
@@ -9,7 +9,7 @@ const MyOrder = () => {
     const { user ,isLoding } = useAuth()
    
     const hendleDeletBtn = (orderID) => {
-        axios.delete(`http://localhost:5000/order/${orderID}`)
+        axios.delete(`https://fierce-dawn-14977.herokuapp.com/order/${orderID}`)
             .then(function (rsc) {
                 if (rsc.status === 200) {
                     const newOrders = orders.filter(order => order._id !== orderID)
@@ -19,7 +19,7 @@ const MyOrder = () => {
         })
     }
     useEffect(() => {
-        axios.get(`http://localhost:5000/order/${user.email}`)
+        axios.get(`https://fierce-dawn-14977.herokuapp.com/order/${user.email}`)
             .then(function (res) {
             setOrders(res.data)
         })

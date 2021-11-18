@@ -28,9 +28,9 @@ function App() {
           <Route exact path="/allcars">
             <Products />
           </Route>
-          <PrivateRouter path="/dashbord">
+          <Route path="/dashbord">
             <Dashbord />
-          </PrivateRouter>
+          </Route>
           <Route exact path="/Login">
             <LoginPage />
           </Route>

@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { useEffect, useState } from 'react/cjs/react.development';
+import { useEffect, useState } from 'react';
 import "./Comments.css"
 const Comments = () => {
     const [comments, setComments] = useState([])
@@ -26,7 +26,7 @@ const Comments = () => {
   }
     };
     useEffect(() => {
-        axios.get('http://localhost:5000/reviews')
+        axios.get('https://fierce-dawn-14977.herokuapp.com/reviews')
             .then(function (rsc) {
             setComments(rsc.data)
         })

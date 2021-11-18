@@ -29,10 +29,10 @@ const NavBar = () => {
          <div>
              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item me-2">
-                    <p>{user?.displayName}</p>  
+                    <p>{user?.displayName }</p>  
                 </li>
                 {
-                    user.email ? <div className="nav-item">
+                    user?.email ? <div className="nav-item">
                       <button className="btn bg-danger nav-link text-light" onClick={logOut}>Log out</button>
                     </div> : <div className="d-flex">
                         <li className="nav-item">

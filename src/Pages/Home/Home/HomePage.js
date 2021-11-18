@@ -4,11 +4,11 @@ import NavBar from '../../Shared/NavBar/NavBar';
 import Comments from '../Comments/Comments';
 import HomeBanner from '../HomeBanner/HomeBanner';
 import HomeProducr from '../HomeProducr/HomeProducr';
-
+import "./HomePage.css"
 const HomePage = () => {
     
     return (
-        <div>
+        <div className="w-100">
             <NavBar></NavBar>
             <HomeBanner></HomeBanner>
             <HomeProducr></HomeProducr>

@@ -7,7 +7,7 @@ const ManageCar = () => {
     const [cars, setCars] = useState([])
     let { path, url } = useRouteMatch();
     const handleDelete = (id) => {
-        axios.delete(`http://localhost:5000/car/${id}`)
+        axios.delete(`https://fierce-dawn-14977.herokuapp.com/car/${id}`)
             .then(function (res) {
             if (res.status === 200) {
                 alert("Delete Sucessfull !!")
@@ -16,7 +16,7 @@ const ManageCar = () => {
         })
     }
     useEffect(() => {
-        axios.get("http://localhost:5000/allcar")
+        axios.get("https://fierce-dawn-14977.herokuapp.com/allcar")
         .then(function (res) {
             setCars(res.data)
         })

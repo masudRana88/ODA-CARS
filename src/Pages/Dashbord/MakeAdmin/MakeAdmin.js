@@ -8,7 +8,7 @@ const MakeAdmin = () => {
         setEmail(inpute)
     }
     const hendleMakeAdmin = () => {
-        axios.put(`http://localhost:5000/user/${email}`)
+        axios.put(`https://fierce-dawn-14977.herokuapp.com/user/${email}`)
             .then(function (res) {
             if (res.status === 200) {
                 alert("Admin added !!!")

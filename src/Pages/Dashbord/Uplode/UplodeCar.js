@@ -11,7 +11,7 @@ const UplodeCar = () => {
         setCar(newData)
     }
     const hendleUplode = () => {
-        axios.post('http://localhost:5000/uplodcar', car)
+        axios.post('https://fierce-dawn-14977.herokuapp.com/uplodcar', car)
             .then(function (response) {
                 if (response.status === 200) {
                     alert("Uplode successfull")

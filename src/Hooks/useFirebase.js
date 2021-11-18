@@ -54,23 +54,24 @@ const useFirebase = () => {
     }
     // uplode user to DB
     const upToDB = (data) => {
-        axios.post("http://localhost:5000/user", data)
+        setIsLoding(true)
+        axios.post("https://fierce-dawn-14977.herokuapp.com/user", data)
             .then(function (response) {
                 if (response.status === 200) {
                     console.log(response)
                     setUser(data)
             }
-        })
+        }).finally(() => setIsLoding(false));
     }
     // get user form DB
     const getToDB = (user) => {
         const userEmail = user.email
-        axios.get(`http://localhost:5000/user/${userEmail}`)
+        axios.get(`https://fierce-dawn-14977.herokuapp.com/user/${userEmail}`)
             .then(function (response) {
                 if (response.status === 200) {
-                setUser(response.data)
+                    setUser(response.data)      
             }
-        })
+        }).finally(() => setIsLoding(false));
      }
     // logOut 
     const logOut = () => {
@@ -87,7 +88,6 @@ const useFirebase = () => {
             if (user) {
                 setUser(user)
                 getToDB(user)
-                setIsLoding(false)
             }
             else {
                 setUser({})

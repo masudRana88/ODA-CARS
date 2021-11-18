@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useHistory, useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
 import Footer from '../Shared/Footer/Footer';
 import NavBar from '../Shared/NavBar/NavBar';
@@ -16,7 +16,7 @@ const Purchase = () => {
     const onSubmit = data => {
         data.purchaseItem = car;
         data.status = "pending"
-        axios.post("http://localhost:5000/order", data)
+        axios.post("https://fierce-dawn-14977.herokuapp.com/order", data)
             .then(function (res) {
                 if (res.status === 200) {
                     alert("Order Successful !!!")
@@ -26,7 +26,7 @@ const Purchase = () => {
         })
     };
     useEffect(() => {
-        axios.get(`http://localhost:5000/car/${idName}`)
+        axios.get(`https://fierce-dawn-14977.herokuapp.com/car/${idName}`)
         .then(function (response) {
             setCar(response.data)
         })

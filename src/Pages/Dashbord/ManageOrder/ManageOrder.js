@@ -1,13 +1,13 @@
 import axios from 'axios';
 import React, { useEffect } from 'react';
-import { useState } from 'react/cjs/react.development';
+import { useState } from 'react';
 
 const ManageOrder = () => {
     const [orders, setOrders] = useState([]);
     const [status, setStatus] = useState('')
 
     const hendleStatus = (e, id) => {
-        axios.put(`http://localhost:5000/order/${id}`, { status })
+        axios.put(`https://fierce-dawn-14977.herokuapp.com/order/${id}`, { status })
             .then(function (res) {
                 if (res.status === 200) {
                 setOrders(orders.filter(order=> order._id !== id))    
@@ -30,7 +30,7 @@ const ManageOrder = () => {
         }
     }
     useEffect(() => [
-        axios.get("http://localhost:5000/order")
+        axios.get("https://fierce-dawn-14977.herokuapp.com/order")
         .then(function (rsc) {
             setOrders(rsc.data)
         })

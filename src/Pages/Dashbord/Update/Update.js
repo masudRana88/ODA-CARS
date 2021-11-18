@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useHistory, useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router-dom';
 
 const Update = (props) => {
     const {cars, setCars} = props
@@ -10,7 +10,7 @@ const Update = (props) => {
     const history = useHistory()
     const idName = useParams();
     const onSubmit = data => {
-        axios.patch(`http://localhost:5000/car/${idName.id}`, data)
+        axios.patch(`https://fierce-dawn-14977.herokuapp.com/car/${idName.id}`, data)
             .then(function (rsc) {
                 if (rsc.status === 200) {
                     alert('Update successful !!')
@@ -21,7 +21,7 @@ const Update = (props) => {
         })
     };
     useEffect(() => {
-        axios.get(`http://localhost:5000/car/${idName.id}`)
+        axios.get(`https://fierce-dawn-14977.herokuapp.com/car/${idName.id}`)
         .then(function (rsc) {
             if (rsc.status === 200) {
                 setCar(rsc.data)

@@ -2,7 +2,7 @@ import userEvent from '@testing-library/user-event';
 import axios from 'axios';
 import React from 'react';
 import Rating from 'react-rating';
-import { useState } from 'react/cjs/react.development';
+import { useState } from 'react';
 import useAuth from '../../../Hooks/useAuth';
 
 const Review = () => {
@@ -17,7 +17,7 @@ const Review = () => {
         setReviewData(newReviewData)
     }
     const hendleSublit = () => {
-        axios.post("http://localhost:5000/reviews", reviewData)
+        axios.post("https://fierce-dawn-14977.herokuapp.com/reviews", reviewData)
             .then(function (rsc) {
                 if (rsc.status === 200) {
                 alert("Review is add !!!")

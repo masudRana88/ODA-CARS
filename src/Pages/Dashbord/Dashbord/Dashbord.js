@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, useHistory, useLocation, useRouteMatch } from 'react-router';
+import { Route, Switch, useHistory, useLocation, useRouteMatch } from 'react-router-dom';
 import AdminRoute from '../../../Hooks/AdminRout';
 import PrivateRouter from '../../../Hooks/PrivateRoute';
 import useAuth from '../../../Hooks/useAuth';

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const HomeProducr = () => {
     const [cars , setCars] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/allcar')
+        fetch('https://fierce-dawn-14977.herokuapp.com/allcar')
             .then(rsc => rsc.json())
         .then(data => setCars(data))
     },[])
