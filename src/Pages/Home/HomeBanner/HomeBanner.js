@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './HomeBanner.css'
 const HomeBanner = () => {
     return (
@@ -9,7 +10,7 @@ const HomeBanner = () => {
                     <h1 className="">
                         Buy The Beat Qulity car's with us
                     </h1>
-                    <button className="btn bg-info mt-5 ">See all Car</button>
+                    <Link to="/allcars"><button className="btn bg-info mt-5 ">See all Car</button></Link>
                 </div>
             </div>
         </div>

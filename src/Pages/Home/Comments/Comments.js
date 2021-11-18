@@ -1,50 +1,50 @@
+import axios from 'axios';
 import React from 'react';
-
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import { useEffect, useState } from 'react/cjs/react.development';
+import "./Comments.css"
 const Comments = () => {
-    const comments = [
-        {
-            name: "mahim",
-            comments: "ndustry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in"
-        } ,   
-        {
-            name: "mahim",
-            comments: "ndustry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in"
-        } ,   
-        {
-            name: "mahim",
-            comments: "ndustry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in"
-        } ,   
-        {
-            name: "mahim",
-            comments: "ndustry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in"
-        } ,   
-    ]
-    const displatComments = Math.ceil(comments.length / 3);
-    console.log(displatComments)
+    const [comments, setComments] = useState([])
+    const responsive = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 5
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 3
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 2
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1
+  }
+    };
+    useEffect(() => {
+        axios.get('http://localhost:5000/reviews')
+            .then(function (rsc) {
+            setComments(rsc.data)
+        })
+    },[])
     return (
-        <div>
-            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    {
-                    comments.map(comment=><div class="carousel-item active">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Special title treatment</h5>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            </div>
-                        </div>
-                    </div>)
-                    }
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
+        <div className="container">
+            <h4 className="text-center mt-5 mb-5">What Our clients say..</h4>
+            <Carousel responsive={responsive}>
+                {comments.map(comment => <div>
+                    <div class="card m-2" >
+                    <img src="https://www.computerhope.com/jargon/g/guest-user.jpg" class="card-img-top rounded-circle card-ing" alt="..."/>
+                    <div class="card-body">
+                        <h5 className="text-center">{ comment.name}</h5>
+                        <p class="card-text">{ comment.review.slice(0, 150)}...</p>
+                    </div>
+                    </div>
+                </div>)}
+            </Carousel>
         </div>
     );
 };

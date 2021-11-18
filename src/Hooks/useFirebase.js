@@ -7,9 +7,11 @@ initializeAuthentication()
 
 const useFirebase = () => {
     const [user, setUser] = useState({})
+    const [isLoding, setIsLoding] = useState(true)
     const auth = getAuth();
     // Email SingIn
-    const singInWithEmail = (data,hisotory) => {
+    const singInWithEmail = (data, hisotory) => {
+        setIsLoding(true)
         createUserWithEmailAndPassword(auth, data.email, data.password)
         .then((userCredential) => {
             // Signed in 
@@ -29,21 +31,26 @@ const useFirebase = () => {
                 alert("This email Already used for Sing Up")
             }
             // ..
-         });
+        })
+        .finally(() => setIsLoding(false))
     }
     // email Login
-    const logInWithEmail = (data) => {
+    const logInWithEmail = (data, history, location) => {
+        setIsLoding(true)
         signInWithEmailAndPassword(auth, data.email, data.pass)
-        .then((userCredential) => {
-            // Signed in 
-            const user = userCredential.user;
-            setUser(user)
-            getToDB(user)
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-        });
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                setUser(user)
+                console.log(user)
+                getToDB(user)
+                history.push(location.state.from)
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+            })
+            .finally(() => setIsLoding(false));
     }
     // uplode user to DB
     const upToDB = (data) => {
@@ -69,15 +76,18 @@ const useFirebase = () => {
     const logOut = () => {
         signOut(auth).then(() => {
         // Sign-out successful.
+            // setIsLoding(false)
         }).catch((error) => {
         // An error happened.
         });
         }
     useEffect(() => {
+        setIsLoding(true)
         const unsubscribe = onAuthStateChanged(auth, user => {
             if (user) {
                 setUser(user)
                 getToDB(user)
+                setIsLoding(false)
             }
             else {
                 setUser({})
@@ -86,6 +96,6 @@ const useFirebase = () => {
         return () => unsubscribe;
     },[])
 
-    return {user,logInWithEmail,singInWithEmail,logOut}
+    return {user,isLoding,logInWithEmail,singInWithEmail,logOut}
 }
 export default useFirebase;

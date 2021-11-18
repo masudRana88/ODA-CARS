@@ -25,7 +25,6 @@ const UplodeCar = () => {
     const rsetInput = () => {
         document.getElementById("create-course-form").reset();
     }
-    console.log(car)
     return (
         <div className="row mt-4">
             <div className="col-lg-6 col-sm-12 mx-auto">

@@ -29,7 +29,7 @@ const NavBar = () => {
          <div>
              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item me-2">
-                    <p>{user.name}</p>  
+                    <p>{user?.displayName}</p>  
                 </li>
                 {
                     user.email ? <div className="nav-item">

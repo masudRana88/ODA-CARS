@@ -28,7 +28,7 @@ const SinginPage = () => {
                 <form id="form-make-admin">
                     <div class="mb-3">
                         <label class="form-label">Name</label>
-                        <input type="text" class="form-control" placeholder="Enter your Full name" name="name" onBlur={ hendleBlur}/>
+                        <input type="text" class="form-control" placeholder="Enter your Full name" name="displayName" onBlur={ hendleBlur}/>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Email Address</label>
@@ -40,7 +40,7 @@ const SinginPage = () => {
                     </div>
                 </form>
                 <NavLink to="login" className="nav-link"><p>Allready have an Account</p> </NavLink>   
-                <button className="btn bg-info" onClick={()=>hendleSingup(singUpdata,hisotory)}>Login</button>    
+                <button className="btn bg-info text-light" onClick={()=>hendleSingup(singUpdata,hisotory)}>Sing up</button>    
                 </div>
             </div>
             <Footer/>

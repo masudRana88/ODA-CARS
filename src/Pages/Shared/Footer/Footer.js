@@ -11,8 +11,8 @@ const Footer = () => {
                 <div className="col-md-4 col-sm-12 me-md-2 me-lg-2">
                     <h6>Links</h6>
                     <ul className="list-group list-group-flush">
-                        <li className="list-group-item bg-dark"><NavLink to="/" className="nav-link">All cars</NavLink></li>
-                        <li className="list-group-item bg-dark"><NavLink to="/" className="nav-link">Your Order</NavLink></li>
+                        <li className="list-group-item bg-dark"><NavLink to="/allcars" className="nav-link">All cars</NavLink></li>
+                        <li className="list-group-item bg-dark"><NavLink to="/dashbord/myorder" className="nav-link">Your Order</NavLink></li>
                         
                     </ul>
                 </div>
@@ -30,7 +30,7 @@ const Footer = () => {
                         </div>
                     </div>
                 </div>
-                <h6 className="text-center mt-3">© Copyright 2020 by TRAVEL TOUR</h6>
+                <h6 className="text-center mt-3">© Copyright 2020 by ODA-CAR</h6>
             </div>
             
        </footer>

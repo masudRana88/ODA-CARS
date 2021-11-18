@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import useAuth from '../../Hooks/useAuth';
 import Footer from '../Shared/Footer/Footer';
 import NavBar from '../Shared/NavBar/NavBar';
@@ -11,18 +11,18 @@ const Purchase = () => {
     const [car, setCar] = useState({});
     const { user } = useAuth()
     const { register, handleSubmit, reset } = useForm();
+    const history = useHistory()
 
     const onSubmit = data => {
-        data.purchaseItem = idName;
+        data.purchaseItem = car;
         data.status = "pending"
-        console.log(data)
         axios.post("http://localhost:5000/order", data)
             .then(function (res) {
                 if (res.status === 200) {
                     alert("Order Successful !!!")
+                    history.push('/allcars')
                     reset()
                 }
-            console.log(res)
         })
     };
     useEffect(() => {

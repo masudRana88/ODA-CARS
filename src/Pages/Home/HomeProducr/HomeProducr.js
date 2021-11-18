@@ -8,7 +8,6 @@ const HomeProducr = () => {
             .then(rsc => rsc.json())
         .then(data => setCars(data))
     },[])
-    console.log(cars)
     return (
     <div className="container mt-5">
         <p className="text-center">--Top Reted deal--</p>

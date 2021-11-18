@@ -1,15 +1,24 @@
 import React from 'react';
-import { Route, Switch, useRouteMatch } from 'react-router';
+import { Route, Switch, useHistory, useLocation, useRouteMatch } from 'react-router';
+import AdminRoute from '../../../Hooks/AdminRout';
+import PrivateRouter from '../../../Hooks/PrivateRoute';
+import useAuth from '../../../Hooks/useAuth';
 import Footer from '../../Shared/Footer/Footer';
 import NavBar from '../../Shared/NavBar/NavBar';
 import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import ManageCar from '../ManageCar/ManageCar';
+import ManageOrder from '../ManageOrder/ManageOrder';
+import MyOrder from '../MyOrder/MyOrder';
+import Pay from '../Pay/Pay';
+import Review from '../Review/Review';
 import SideBar from '../SideBar/SideBar';
 import UplodeCar from '../Uplode/UplodeCar';
 import './Dashbord.css'
 
 const Dashbord = () => {
     let { path, url } = useRouteMatch();
+    const { user } = useAuth()
+    const history = useHistory()
     return (
         <div class="">
             <NavBar/>
@@ -22,18 +31,32 @@ const Dashbord = () => {
                     
                     <div className="col-10">
                     <Switch>
-                        <Route exact path={path}>
-                        <h3>Please select a topic.</h3>
+                        {
+                                user?.role === "user"&&<Route exact path={path}>
+                            <MyOrder/>
                         </Route>
-                        <Route path={`${path}/uplode`}>
+                        }
+                        <AdminRoute path={`${path}/uplode`}>
                            <UplodeCar/>        
-                        </Route>
-                        <Route path={`${path}/makeAdmin`}>
+                        </AdminRoute>
+                        <AdminRoute path={`${path}/makeAdmin`}>
                            <MakeAdmin/>        
-                        </Route>
-                        <Route path={`${path}/managecar`}>
+                        </AdminRoute>
+                        <AdminRoute path={`${path}/managecar`}>
                            <ManageCar/>        
-                        </Route>
+                        </AdminRoute>
+                        <AdminRoute path={`${path}/allorder`}>
+                           <ManageOrder/>        
+                        </AdminRoute>
+                        <PrivateRouter path={`${path}/pay`}>
+                           <Pay/>       
+                        </PrivateRouter>
+                        <PrivateRouter path={`${path}/myorder`}>
+                           <MyOrder/>       
+                        </PrivateRouter>
+                        <PrivateRouter path={`${path}/review`}>
+                           <Review/>       
+                        </PrivateRouter>
                     </Switch>
                     </div>
                 </div>

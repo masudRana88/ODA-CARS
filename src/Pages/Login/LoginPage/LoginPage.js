@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory, useLocation} from 'react-router-dom';
 import useAuth from '../../../Hooks/useAuth';
 import Footer from '../../Shared/Footer/Footer';
 import NavBar from '../../Shared/NavBar/NavBar';
 import './LoginPage.css'
 
 const LoginPage = () => {
-     const [loginData, setLoginData] = useState({});
+    const [loginData, setLoginData] = useState({});
+    const history = useHistory()
+    const location = useLocation()
     const {logInWithEmail} = useAuth()
     const hendleBlur = (e) => {
         const field = e.target.name;
@@ -14,9 +16,6 @@ const LoginPage = () => {
         const newData = { ...loginData };
         newData[field] = value;
         setLoginData(newData)
-    }
-    const hendleLogin = () => {
-        
     }
     return (
         <div>
@@ -35,7 +34,7 @@ const LoginPage = () => {
                     </div>
                 </form>
                 <NavLink to="singup" className="nav-link"><p>Create An Account</p> </NavLink>   
-                <button className="btn bg-info" onClick={()=>logInWithEmail(loginData)}>Login</button>    
+                <button className="btn bg-info" onClick={()=>logInWithEmail(loginData, history, location)}>Login</button>    
                 </div>
             </div>
             <Footer/>

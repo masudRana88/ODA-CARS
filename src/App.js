@@ -5,10 +5,12 @@ import {
   Route
 } from "react-router-dom";
 import AuthProvider from "./Hooks/AuthProvider";
+import PrivateRouter from "./Hooks/PrivateRoute";
 import Dashbord from "./Pages/Dashbord/Dashbord/Dashbord";
 import HomePage from './Pages/Home/Home/HomePage';
 import LoginPage from "./Pages/Login/LoginPage/LoginPage";
 import SinginPage from "./Pages/Login/SinginPage/SinginPage";
+import NotFount from "./Pages/NotFount/NotFount";
 import Products from "./Pages/Products/Products/Products";
 import Purchase from "./Pages/Purchase/Purchase";
 
@@ -26,17 +28,20 @@ function App() {
           <Route exact path="/allcars">
             <Products />
           </Route>
-          <Route path="/dashbord">
+          <PrivateRouter path="/dashbord">
             <Dashbord />
-          </Route>
+          </PrivateRouter>
           <Route exact path="/Login">
             <LoginPage />
           </Route>
           <Route exact path="/singup">
             <SinginPage />
           </Route>
-          <Route path="/purchase/:idName">
+          <PrivateRouter path="/purchase/:idName">
             <Purchase/>
+          </PrivateRouter>
+          <Route exact path="*">
+            <NotFount />
           </Route>
         </Switch>
     </Router>

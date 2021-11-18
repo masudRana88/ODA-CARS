@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link,useRouteMatch,Switch,Route} from 'react-router-dom';
+import Update from '../Update/Update';
 
 const ManageCar = () => {
     const [cars, setCars] = useState([])
+    let { path, url } = useRouteMatch();
     const handleDelete = (id) => {
         axios.delete(`http://localhost:5000/car/${id}`)
             .then(function (res) {
@@ -17,11 +20,13 @@ const ManageCar = () => {
         .then(function (res) {
             setCars(res.data)
         })
-    }, [])
-    console.log(cars)
+    }, [cars])
     return (
         <div>
-            {
+            <Switch>
+                <Route exact path={path}>
+                    <div>
+                {
                 cars.map(car => <div className="col-lg-10 col-sm-12 mt-2 ms-2 mb-2 shadow-lg ">
                     <div class="card">
                         <div className="row">
@@ -38,7 +43,9 @@ const ManageCar = () => {
                                         { car.discription}
                                     </p>
                                 </div>
-                                <button className="btn bg-info m-1 text-light">Update</button>
+                            <Link to={`${path}/update/${car._id}`}>
+                                <button className="btn bg-info m-1 text-light">Update</button>        
+                            </Link>
                             <button className="btn bg-danger text-light m-1" onClick={()=>handleDelete(car._id)}>Delete</button>
                             </div>
                         </div>
@@ -46,6 +53,13 @@ const ManageCar = () => {
                 </div>
                 )
             }
+            </div>
+                </Route>
+                <Route path={`${path}/update/:id`}>
+                    <Update cars={cars} setCars={setCars}></Update>
+                </Route>
+            </Switch>
+            
         </div>
     );
 };
