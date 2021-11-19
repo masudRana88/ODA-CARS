@@ -44,7 +44,8 @@ const useFirebase = () => {
                 setUser(user)
                 console.log(user)
                 getToDB(user)
-                history.push(location.state.from)
+                alert("Loggedin Suceesful !!")
+                history.push("/home")
             })
             .catch((error) => {
                 const errorCode = error.code;
