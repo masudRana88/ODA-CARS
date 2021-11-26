@@ -2,6 +2,9 @@
 
 Website [Live Link](https://oda-car.firebaseapp.com/).
 
+## Admin Email : admin@admin.com
+## Admin Pass : 123456
+
 ## How This website Works
 
 ### For User
